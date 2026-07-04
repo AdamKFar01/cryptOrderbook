@@ -1,6 +1,4 @@
-//
-// Created by Adam Farhat on 03/07/2026.
-//
+// Created by Adam Farhat
 
 #ifndef CRYPTORDERBOOK_ORDERBOOK_H
 #define CRYPTORDERBOOK_ORDERBOOK_H
@@ -14,8 +12,36 @@ class OrderBook {
 public:
 
     // Loads the full starting order book
-    void applySnapshot() {
-        // empty for now
+    void applySnapshot(const std::vector<std::pair<double, double>>& bids,
+                       const std::vector<std::pair<double, double>>& asks) {
+        // Clear bids and asks
+        bid_book.clear();
+        ask_book.clear();
+
+        // Update bid prices
+        for (const auto& bid : bids) {
+            double price = bid.first;
+            double qty = bid.second;
+
+            if (qty == 0) {                      // If qty is 0, remove this price level
+                bid_book.erase(price);
+            } else {                             // Otherwise, add or update this price level
+                bid_book[price] = qty;
+            }
+        }
+
+        // Update ask prices
+        for (const auto& ask : asks) {
+            double price = ask.first;
+            double qty = ask.second;
+
+            if (qty == 0) {                     // If qty is 0, remove this price level
+                ask_book.erase(price);
+            } else {
+                ask_book[price] = qty;          // Otherwise, add or update this price level
+            }
+        }
+
     }
 
 
@@ -53,6 +79,7 @@ public:
         // empty for now
         return 0;
     }
+
 
 private:
     // Bids sorted from highest price to lowest price
