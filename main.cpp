@@ -124,9 +124,10 @@ int main () {
                                }}
             };
 
+            // Check subscription status
             webSocket.send(subscribeMsg.dump());
 
-            std::cout << "> " << std::flush;
+            std::cout << "> " << std::flush; // Display a prompt
         }
         else if (msg->type == ix::WebSocketMessageType::Error)  // If an error occurs
         {
@@ -138,13 +139,14 @@ int main () {
     }
     );
 
-    webSocket.start();                  // A session is started
+    webSocket.start();                  // Starting session
 
-    //webSocket.send("Yo");               // A message is sent
+    //webSocket.send("Yo");               // A message is sent - only needed in project beginning
     std::cout << "> " << std::flush;    // Display a prompt
     std::string text;                   // A string of text
 
 
+    // Infinite loop to control exit time and avoid crash
     while (true) {
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
