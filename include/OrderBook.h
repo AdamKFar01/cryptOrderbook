@@ -68,7 +68,7 @@ public:
             double qty = bid.second;
 
             if (qty == 0) {                      // If qty is 0, remove this price level
-                bid_book.erase(price);
+                bid_book.erase(price);           // e.g. ignoring the bid if qty is 0 bcs it's futile
             } else {                             // Otherwise, add or update this price level
                 bid_book[price] = qty;
             }
@@ -88,6 +88,7 @@ public:
     }
 
     // Calculates checksum to check if the book is correct
+    // -- Function not complete yet --
     uint32_t calculateChecksum() {
         // empty for now
         return 0;
@@ -96,6 +97,7 @@ public:
 
 private:
     // Bids sorted from highest price to lowest price
+    // std::greater inverts the sorting order (which is originally low -> high)
     std::map<double, double, std::greater<double>> bid_book;
 
     // Asks sorted from lowest price to highest price
