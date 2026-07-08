@@ -1,11 +1,24 @@
-// Created by Adam Farhat on 03/07/2026.
+// Created by Adam Farhat on
 // v2 snapchat and update messages link: https://docs.kraken.com/exchange/api-reference/spot-websocket-v2/book
+
+// -- Link to skeleton programs for update, snapshot, subscribing, unsubscribing, asks and bids can be found on
+// the web in Kraken book v2 and other:
+// Link: https://docs.kraken.com/exchange/api-reference/spot-websocket-v2/book
+
+// Github repos used:
+// -- IXWebSocket Machine Zone repo: https://github.com/machinezone/IXWebSocket/blob/master/ws/ws.cpp
+// -- WebSocket cpp by zaphoyd: https://github.com/zaphoyd/websocketpp
+// -- nlohmann for json : https://github.com/nlohmann/json
+
+
+
 
 #include "include/OrderBook.h"
 
 #include <ixwebsocket/IXNetSystem.h>
 #include <ixwebsocket/IXWebSocket.h>
 #include <ixwebsocket/IXUserAgent.h>
+
 #include <iostream>
 #include <thread>
 #include <chrono>
@@ -14,7 +27,7 @@
 
 int main () {
 
-    // Needed for windows, probably won't be of use for mac
+    // Needed for windows, most likely won't be of use for mac
     ix::initNetSystem();
 
     // Creating WebSocket and address that will be used for connection
@@ -45,10 +58,10 @@ int main () {
 
                 std::string channel = j["channel"].get<std::string>();
                 if (channel == "heartbeat") {
-                    return;                                         // ignore heartbeat msgs
+                    return;                                         // Ignore heartbeat msgs
                 }
                 if (channel != "book") {
-                    return;                                         // book must be next
+                    return;                                         // Book must be next
                 }
                 if (!j.contains("type")) {
                     return;                                         // Book needs type (snap or up)
@@ -56,15 +69,15 @@ int main () {
 
                 std::string type = j["type"].get<std::string>();
                 if (type != "snapshot" && type != "update") {
-                    return;                                         // ignore unknown book msgs
+                    return;                                         // Ignore unknown book msgs
                 }
                 if (!j.contains("data") || !j["data"].is_array() || j["data"].empty()) {
                     return;                     // Kraken stores the book data inside data[0]
                 }
 
                 const auto& bookData = j["data"][0];
-                auto parseSide = [](const nlohmann::json& side) {   // converts bids/ask to
-                    std::vector<std::pair<double, double>> levels;  // vector<pair<price, qty>>
+                auto parseSide = [](const nlohmann::json& side) {   // Converts bids/ask to
+                    std::vector<std::pair<double, double>> levels;  // Vector<pair<price, qty>>
 
                     for (const auto& level : side) {
                         if (!level.contains("price") || !level.contains("qty")) {
@@ -98,7 +111,7 @@ int main () {
             std::cout << "> " << std::flush;
         }
 
-        else if (msg->type == ix::WebSocketMessageType::Open)   // if a connection opens
+        else if (msg->type == ix::WebSocketMessageType::Open)   // If a connection opens
         {
             std::cout << "Connection established!" << std::endl;
 
@@ -136,16 +149,16 @@ int main () {
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
-
     /*
-    // This loop reads what is typed in the terminal, line by line
-    // And sends each line as a new message
-    // Not needed because we will be reading stuff from Kraken, not user input
     while (std::getline(std::cin, text)) {
         webSocket.send(text);
         std::cout << "> " << std::flush;
-    } */
+    }
 
+    // This loop reads what is typed in the terminal, line by line
+    // And sends each line as a new message
+    // Not needed because we will be reading stuff from Kraken, not user input
+    */
 
     return 0;
 

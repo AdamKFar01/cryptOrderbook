@@ -1,4 +1,16 @@
-// Created by Adam Farhat
+// Created by Adam Farhat on
+// -- v2 snapchat and update messages link: https://docs.kraken.com/exchange/api-reference/spot-websocket-v2/book
+
+// -- Link to skeleton programs for update, snapshot, subscribing, unsubscribing, asks and bids can be found on
+// the web in Kraken book v2 and other:
+// Link: https://docs.kraken.com/exchange/api-reference/spot-websocket-v2/book
+
+// Github repos used:
+// -- IXWebSocket Machine Zone repo: https://github.com/machinezone/IXWebSocket/blob/master/ws/ws.cpp
+// -- WebSocket cpp by zaphoyd: https://github.com/zaphoyd/websocketpp
+// -- nlohmann for json : https://github.com/nlohmann/json
+
+
 
 #ifndef CRYPTORDERBOOK_ORDERBOOK_H
 #define CRYPTORDERBOOK_ORDERBOOK_H
@@ -14,11 +26,12 @@ public:
     // Loads the full starting order book
     void applySnapshot(const std::vector<std::pair<double, double>>& bids,
                        const std::vector<std::pair<double, double>>& asks) {
-        // Clear bids and asks
+
+        // Clear bids & asks
         bid_book.clear();
         ask_book.clear();
 
-        // Update bid prices
+        // Update BID prices
         for (const auto& bid : bids) {
             double price = bid.first;
             double qty = bid.second;
@@ -30,7 +43,7 @@ public:
             }
         }
 
-        // Update ask prices
+        // Update ASK prices
         for (const auto& ask : asks) {
             double price = ask.first;
             double qty = ask.second;
@@ -88,5 +101,7 @@ private:
     // Asks sorted from lowest price to highest price
     std::map<double, double> ask_book;
 };
+
+
 
 #endif //CRYPTORDERBOOK_ORDERBOOK_H
