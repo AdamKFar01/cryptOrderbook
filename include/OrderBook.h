@@ -10,6 +10,7 @@
 // -- WebSocket cpp by zaphoyd: https://github.com/zaphoyd/websocketpp
 // -- nlohmann for json : https://github.com/nlohmann/json
 // -- Kraken checksum: https://docs.kraken.com/exchange/guides/websockets/book-checksum-v2
+// -- CRC32 from ZLIB: https://github.com/luvit/zlib/tree/master
 
 
 #ifndef CRYPTORDERBOOK_ORDERBOOK_H
