@@ -19,6 +19,15 @@
 #include <vector>
 #include <cstdint>
 #include <functional>
+#include <string>
+
+//
+struct DataValues {
+    double qty;
+    std::string qty_str;
+    std:: string price_str;
+};
+
 
 class OrderBook {
 public:
@@ -90,6 +99,7 @@ public:
     // Calculates checksum to check if the book is correct
     // -- Function not complete yet --
     uint32_t calculateChecksum() {
+        // to fill
 
         return 0;
     }
@@ -99,6 +109,7 @@ private:
     // Bids sorted from highest price to lowest price
     // std::greater inverts the sorting order (which is originally low -> high)
     std::map<double, double, std::greater<double>> bid_book;
+
 
     // Asks sorted from lowest price to highest price
     std::map<double, double> ask_book;
