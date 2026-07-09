@@ -77,7 +77,7 @@ int main () {
 
                 const auto& bookData = j["data"][0];
                 auto parseSide = [](const nlohmann::json& side) {   // Converts bids/ask to
-                    std::vector<std::pair<double, double>> levels;  // Vector<pair<price, qty>>
+                    std::vector<DataValues> levels;  // Vector<pair<price, qty>>
 
                     for (const auto& level : side) {
                         if (!level.contains("price") || !level.contains("qty")) {
@@ -86,17 +86,21 @@ int main () {
 
                         double price = level["price"].get<double>();
                         double qty = level["qty"].get<double>();
-                        levels.emplace_back(price, qty);
+                        std::string price_str = level["price"].dump();      // .dump() gives text form of the values
+                        std::string qty_str = level["price"].dump();
+
+                        levels.push_back({price, qty, price_str, qty_str}); // Build DataValues struct w/ all 3 fields
+
                     }
                     return levels;
                 };
 
                 // Parse bids if they exist
-                std::vector<std::pair<double, double>> bids =
-                        bookData.contains("bids") ? parseSide(bookData["bids"]):std::vector<std::pair<double, double>>{};
+                std::vector<DataValues> bids =
+                        bookData.contains("bids") ? parseSide(bookData["bids"]):std::vector<DataValues>{};
                 // Parse asks if they exist
-                std::vector<std::pair<double, double>> asks =
-                        bookData.contains("asks") ? parseSide(bookData["asks"]):std::vector<std::pair<double, double>>{};
+                std::vector<DataValues> asks =
+                        bookData.contains("asks") ? parseSide(bookData["asks"]):std::vector<DataValues>{};
                 // Apply full snapshot or incremental update
                 if (type == "snapshot") {
                     orderBook.applySnapshot(bids, asks);

@@ -23,9 +23,10 @@
 
 //
 struct DataValues {
+    double price;
     double qty;
+    std::string price_str;
     std::string qty_str;
-    std:: string price_str;
 };
 
 
@@ -33,34 +34,38 @@ class OrderBook {
 public:
 
     // Loads the full starting order book
-    void applySnapshot(const std::vector<std::pair<double, double>>& bids,
-                       const std::vector<std::pair<double, double>>& asks) {
+    void applySnapshot(const std::vector<DataValues>& bids,
+                       const std::vector<DataValues>& asks) {
 
         // Clear bids & asks
         bid_book.clear();
         ask_book.clear();
 
+
         // Update BID prices
         for (const auto& bid : bids) {
-            double price = bid.first;
-            double qty = bid.second;
 
-            if (qty == 0) {                      // If qty is 0, remove this price level
-                bid_book.erase(price);
+            //double price = bid.first;
+            //double qty = bid.second;
+
+            if (bid.qty == 0) {                      // If qty is 0, remove this price level
+                bid_book.erase(bid.price);
             } else {                             // Otherwise, add or update this price level
-                bid_book[price] = qty;
+                bid_book[bid.price] = bid;
             }
         }
 
+
         // Update ASK prices
         for (const auto& ask : asks) {
-            double price = ask.first;
-            double qty = ask.second;
 
-            if (qty == 0) {                     // If qty is 0, remove this price level
-                ask_book.erase(price);
+            //double price = ask.first;
+            //double qty = ask.second;
+
+            if (ask.qty == 0) {                     // If qty is 0, remove this price level
+                ask_book.erase(ask.price);
             } else {
-                ask_book[price] = qty;          // Otherwise, add or update this price level
+                ask_book[ask.price] = ask;          // Otherwise, add or update this price level
             }
         }
 
@@ -68,30 +73,33 @@ public:
 
 
     // Applies changes to the current order book
-    void applyUpdate(const std::vector<std::pair<double, double>>& bids,
-                     const std::vector<std::pair<double, double>>& asks) {
+    void applyUpdate(const std::vector<DataValues>& bids,
+                     const std::vector<DataValues>& asks) {
+
 
         // Update bid prices
         for (const auto& bid : bids) {
-            double price = bid.first;
-            double qty = bid.second;
 
-            if (qty == 0) {                      // If qty is 0, remove this price level
-                bid_book.erase(price);           // e.g. ignoring the bid if qty is 0 bcs it's futile
+            //double price = bid.price;
+            //double qty = bid.second;
+
+            if (bid.qty == 0) {                      // If qty is 0, remove this price level
+                bid_book.erase(bid.price);           // e.g. ignoring the bid if qty is 0 bcs it's futile
             } else {                             // Otherwise, add or update this price level
-                bid_book[price] = qty;
+                bid_book[bid.price] = bid;
             }
         }
 
+
         // Update ask prices
         for (const auto& ask : asks) {
-            double price = ask.first;
-            double qty = ask.second;
+            //double price = ask.first;
+            //double qty = ask.second;
 
-            if (qty == 0) {                     // If qty is 0, remove this price level
-                ask_book.erase(price);
+            if (ask.qty == 0) {                     // If qty is 0, remove this price level
+                ask_book.erase(ask.price);
             } else {
-                ask_book[price] = qty;          // Otherwise, add or update this price level
+                ask_book[ask.price] = ask;          // Otherwise, add or update this price level
             }
         }
     }
@@ -108,11 +116,12 @@ public:
 private:
     // Bids sorted from highest price to lowest price
     // std::greater inverts the sorting order (which is originally low -> high)
-    std::map<double, double, std::greater<double>> bid_book;
+    // the order is map<key, value>
+    std::map<double, DataValues, std::greater<double>> bid_book;
 
 
     // Asks sorted from lowest price to highest price
-    std::map<double, double> ask_book;
+    std::map<double, DataValues> ask_book;
 };
 
 
