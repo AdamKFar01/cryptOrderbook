@@ -3,7 +3,8 @@
 
 <hr height="15px" style="background-color: white;">
 ----
-## **Introduction:**
+
+### **Introduction:**
 
 - Main language & tools used: C++, CMake (4.3.4), 
 
@@ -17,6 +18,7 @@
 
 <hr height="15px" style="background-color: white;">
 ----
+
 ## **Details:**
 
 ABC
@@ -35,6 +37,7 @@ abc
 
 <hr height="15px" style="background-color: white;">
 ----
+
 ## **How to run:**
 
 ABC
@@ -42,6 +45,7 @@ ABC
 
 <hr height="15px" style="background-color: white;">
 ----
+
 ## **References:**
 Websocket channel and stream choice:
 Kraken v2. Advised to use as it is newer than v1
