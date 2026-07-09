@@ -2,7 +2,7 @@
 # CryptoOrderbook 
 
 <hr height="15px" style="background-color: white;">
-----
+
 
 ### **Introduction:**
 
@@ -17,26 +17,26 @@
 
 
 <hr height="15px" style="background-color: white;">
-----
+
 
 ## **Details:**
 
 ABC
 
-----
+
 ### **main.cpp**
 
 
 abc
 
-----
+
 ### **include/OrderBook.h**
 
 abc
 
 
 <hr height="15px" style="background-color: white;">
-----
+
 
 ## **How to run:**
 
@@ -44,7 +44,7 @@ ABC
 
 
 <hr height="15px" style="background-color: white;">
-----
+
 
 ## **References:**
 Websocket channel and stream choice:
