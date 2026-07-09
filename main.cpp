@@ -9,7 +9,7 @@
 // -- IXWebSocket Machine Zone repo: https://github.com/machinezone/IXWebSocket/blob/master/ws/ws.cpp
 // -- WebSocket cpp by zaphoyd: https://github.com/zaphoyd/websocketpp
 // -- nlohmann for json : https://github.com/nlohmann/json
-
+// -- Kraken checksum: https://docs.kraken.com/exchange/guides/websockets/book-checksum-v2
 
 
 
@@ -164,7 +164,7 @@ int main () {
     // Not needed because we will be reading stuff from Kraken, not user input
     */
 
-    
+
     // "return 0;" irrelevant here because of the infinite while loop above
     // Keeping "return 0;" as is won't affect the code
     return 0;

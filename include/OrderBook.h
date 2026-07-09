@@ -9,7 +9,7 @@
 // -- IXWebSocket Machine Zone repo: https://github.com/machinezone/IXWebSocket/blob/master/ws/ws.cpp
 // -- WebSocket cpp by zaphoyd: https://github.com/zaphoyd/websocketpp
 // -- nlohmann for json : https://github.com/nlohmann/json
-
+// -- Kraken checksum: https://docs.kraken.com/exchange/guides/websockets/book-checksum-v2
 
 
 #ifndef CRYPTORDERBOOK_ORDERBOOK_H
@@ -90,7 +90,7 @@ public:
     // Calculates checksum to check if the book is correct
     // -- Function not complete yet --
     uint32_t calculateChecksum() {
-        // empty for now
+
         return 0;
     }
 
