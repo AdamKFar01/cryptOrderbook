@@ -156,7 +156,6 @@ int main () {
     }
 
 
-
     /*
     while (std::getline(std::cin, text)) {
         webSocket.send(text);
@@ -168,9 +167,9 @@ int main () {
     // Not needed because we will be reading stuff from Kraken, not user input
     */
 
-
+    return 0;
     // "return 0;" irrelevant here because of the infinite while loop above
     // Keeping "return 0;" as is won't affect the code
-    return 0;
+
 
 }

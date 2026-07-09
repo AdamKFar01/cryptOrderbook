@@ -20,8 +20,11 @@
 #include <cstdint>
 #include <functional>
 #include <string>
+#include <zlib.h>
+#include <algorithm>
 
-//
+
+// Added values with different data types to a struct
 struct DataValues {
     double price;
     double qty;
@@ -41,7 +44,6 @@ public:
         bid_book.clear();
         ask_book.clear();
 
-
         // Update BID prices
         for (const auto& bid : bids) {
 
@@ -54,7 +56,6 @@ public:
                 bid_book[bid.price] = bid;
             }
         }
-
 
         // Update ASK prices
         for (const auto& ask : asks) {
@@ -71,11 +72,9 @@ public:
 
     }
 
-
     // Applies changes to the current order book
     void applyUpdate(const std::vector<DataValues>& bids,
                      const std::vector<DataValues>& asks) {
-
 
         // Update bid prices
         for (const auto& bid : bids) {
@@ -105,11 +104,65 @@ public:
     }
 
     // Calculates checksum to check if the book is correct
-    // -- Function not complete yet --
     uint32_t calculateChecksum() {
-        // to fill
 
-        return 0;
+        // Declaring asks and bids strings
+        std::string asks_string;
+        std::string bids_string;
+
+        // -- Asks string to loop through top 10 asks   |   Erase '.' and leading zeros inside loops
+        int ask_count = 0;
+        for (const auto&level : ask_book) {
+
+            // Stopping at the 10th task -- adding it below the grabbing would make it stop at the 11th.
+            if (ask_count >= 10) break;
+            ask_count++;
+
+            // Grabbing asks string
+            std::string price = level.second.price_str;                             // price
+            price.erase(std::remove(price.begin(), price.end(), '.'), price.end()); // Erasing '.'
+            price.erase(0, price.find_first_not_of('0'));                           // Erasing '0'
+
+            std::string qty  = level.second.qty_str;                                // qty
+            qty.erase(std::remove(qty.begin(), qty.end(), '.'), qty.end());
+            qty.erase(0, qty.find_first_not_of('0'));
+
+            asks_string += price + qty;
+
+            //if (ask_count >= 9) break;
+            //ask_count++;
+        }
+
+        // -- Bids string to loop through top 10 bids   |    Erase '.' and leading zeros inside loops --
+        int bid_count = 0;
+        for (const auto&level : bid_book) {
+
+            // Stopping at the 10th task -- adding it below the grabbing would make it stop at the 11th.
+            if (bid_count >= 10) break;
+            bid_count++;
+
+
+            // Grabbing bids string
+            std::string price = level.second.price_str;                             // price
+            price.erase(std::remove(price.begin(), price.end(), '.'), price.end()); // Erasing '.'
+            price.erase(0, price.find_first_not_of('0'));                           // Erasing '0'
+
+            std::string qty = level.second.qty_str;                                 // qty
+            qty.erase(std::remove(qty.begin(), qty.end(), '.'), qty.end());
+            qty.erase(0, qty.find_first_not_of('0'));
+            bids_string += price + qty;
+
+            //if (bid_count >= 9) break;
+            //bid_count++;
+        }
+
+        // Combined string of both
+        std::string combined  = asks_string + bids_string;
+
+        // Converting string's character data to byte pointers that crc32 works with
+        uint32_t result = crc32(0L, reinterpret_cast<const unsigned char*>(combined.c_str()), combined.size());
+
+        return result;
     }
 
 
