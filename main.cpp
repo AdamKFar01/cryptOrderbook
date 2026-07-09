@@ -87,7 +87,7 @@ int main () {
                         double price = level["price"].get<double>();
                         double qty = level["qty"].get<double>();
                         std::string price_str = level["price"].dump();      // .dump() gives text form of the values
-                        std::string qty_str = level["price"].dump();
+                        std::string qty_str = level["qty"].dump();
 
                         levels.push_back({price, qty, price_str, qty_str}); // Build DataValues struct w/ all 3 fields
 
