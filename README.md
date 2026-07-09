@@ -1,8 +1,11 @@
 
 # CryptoOrderbook 
 
+<hr height="15px" style="background-color: white;">
 ----
-## **Details:**
+## **Introduction:**
+
+- Main language & tools used: C++, CMake (4.3.4), 
 
 - CryptOrderbook is an orderbook that connects Kraken's live market data and build a real-time crypto order book.
 
@@ -12,27 +15,34 @@
 			{ The references and links can be found at the bottom }
 
 
+<hr height="15px" style="background-color: white;">
+----
+## **Details:**
+
+ABC
+
 ----
 ### **main.cpp**
 
 
-
+abc
 
 ----
 ### **include/OrderBook.h**
 
+abc
 
 
+<hr height="15px" style="background-color: white;">
 ----
-
 ## **How to run:**
 
+ABC
 
 
+<hr height="15px" style="background-color: white;">
 ----
-
 ## **References:**
-
 Websocket channel and stream choice:
 Kraken v2. Advised to use as it is newer than v1
 Link: https://docs.kraken.com/exchange/api-reference/spot-websocket-v2/book
