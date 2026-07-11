@@ -1,14 +1,14 @@
 
-# CryptoOrderbook 
+# CryptOrderbook
 
 <hr height="15px" style="background-color: white;">
 
 
 ### **Introduction:**
 
-- Main language & tools used: C++, CMake (4.3.4), 
+- Main language & tools used: C++, CMake (4.3.4 used, 3.15 minimum)
 
-- CryptOrderbook is an orderbook that connects Kraken's live market data and build a real-time crypto order book.
+- CryptOrderbook is an orderbook that connects to Kraken's live market data and builds a real-time crypto order book.
 
 - The Websocket channel and stream used are Kraken (v2, newer version than v1 and recommended).
 
