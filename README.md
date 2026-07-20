@@ -64,8 +64,12 @@ The program will connect to Kraken and start printing the live order book for BT
 
 - Websocket channel and stream choice: Kraken v2, advised to use as it is newer than v1
   - Link: https://docs.kraken.com/exchange/api-reference/spot-websocket-v2/book
+
+
 - WebSocket used: IXWebSocket
   - Github repo link: https://github.com/machinezone/IXWebSocket/blob/master/ws/ws.cpp
+
+
 - Other tools and resources links:
   - WebSocket cpp by zaphoyd: https://github.com/zaphoyd/websocketpp
   - nlohmann for json: https://github.com/nlohmann/json
