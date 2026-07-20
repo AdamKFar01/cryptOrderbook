@@ -37,9 +37,21 @@ Defines the `OrderBook` class. It stores bids and asks in sorted maps, applies s
 <hr height="15px" style="background-color: white;">
 
 
+## **Requirements:**
+
+- C++17 compiler
+- CMake, 3.15 minimum (4.3.4 used)
+- nlohmann_json: https://github.com/nlohmann/json
+- IXWebSocket: https://github.com/machinezone/IXWebSocket
+- ZLIB: https://github.com/luvit/zlib
+
+
+<hr height="15px" style="background-color: white;">
+
+
 ## **How to run:**
 
-1. Install the dependencies: nlohmann_json, IXWebSocket, and ZLIB.
+1. Install the dependencies listed above.
 
 2. Build the project with CMake:
 ```
