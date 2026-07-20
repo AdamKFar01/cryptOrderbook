@@ -77,6 +77,14 @@ The program will connect to Kraken and start printing the live order book for BT
   - CRC32 from ZLIB: https://github.com/luvit/zlib/tree/master
 
 
+<hr height="15px" style="background-color: white;">
+
+
+## **License:**
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+
 
 
 
