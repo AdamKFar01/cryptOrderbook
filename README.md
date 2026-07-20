@@ -72,6 +72,34 @@ The program will connect to Kraken and start printing the live order book for BT
 <hr height="15px" style="background-color: white;">
 
 
+## **Example output:**
+
+```
+Connection established!
+Received message: {"channel":"status","type":"update","data":[{"version":"2.0.10","system":"online","api_version":"v2","connection_id":3874220236022742727}]}
+Received message: {"method":"subscribe","result":{"channel":"book","depth":10,"snapshot":true,"symbol":"BTC/USD"},"success":true,"time_in":"2026-07-20T21:04:03.811983Z","time_out":"2026-07-20T21:04:03.812018Z"}
+Received message: {"channel":"book","type":"snapshot","data":[{"symbol":"BTC/USD","bids":[{"price":65289.2,"qty":7.80907737}, ...],"asks":[{"price":65289.3,"qty":2.04447826}, ...],"checksum":2232194968,"timestamp":"2026-07-20T21:04:03.988653Z"}]}
+Received message: {"channel":"book","type":"update","data":[{"symbol":"BTC/USD","bids":[],"asks":[{"price":65289.3,"qty":2.03933536}],"checksum":2430703830,"timestamp":"2026-07-20T21:04:04.001555Z"}]}
+Received message: {"channel":"heartbeat"}
+...
+```
+
+The first message after connecting is a snapshot with the top 10 bids and asks. After that, update messages stream in with only the price levels that changed. Each book message includes a checksum that the order book uses to check that it is in sync with Kraken.
+
+
+<hr height="15px" style="background-color: white;">
+
+
+## **Limitations:**
+
+- Only subscribes to BTC/USD. The symbol is hardcoded in main.cpp.
+- Only prints the order book to the console, it is not saved or stored anywhere.
+- Does not automatically reconnect if the WebSocket connection drops.
+
+
+<hr height="15px" style="background-color: white;">
+
+
 ## **References:**
 
 - Websocket channel and stream choice: Kraken v2, advised to use as it is newer than v1
