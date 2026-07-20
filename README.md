@@ -12,8 +12,7 @@
 
 - The Websocket channel and stream used are Kraken (v2, newer version than v1 and recommended).
 
-
-			{ The references and links can be found at the bottom }
+- References and links can be found at the bottom of this file.
 
 
 <hr height="15px" style="background-color: white;">
@@ -123,8 +122,4 @@ The first message after connecting is a snapshot with the top 10 bids and asks. 
 ## **License:**
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-
-
-
 
