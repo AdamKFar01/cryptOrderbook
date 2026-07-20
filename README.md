@@ -21,18 +21,17 @@
 
 ## **Details:**
 
-ABC
+This project connects to Kraken's WebSocket API and keeps a live order book of bids and asks for BTC/USD. It reads the snapshot and update messages sent by Kraken, keeps the book updated in memory, and checks it against Kraken's checksum to make sure it is correct.
 
 
 ### **main.cpp**
 
-
-abc
+Sets up the WebSocket connection to Kraken and subscribes to the book channel for BTC/USD. When a message comes in, it is parsed as JSON and passed to the order book as either a snapshot or an update.
 
 
 ### **include/OrderBook.h**
 
-abc
+Defines the `OrderBook` class. It stores bids and asks in sorted maps, applies snapshots and updates, and calculates a checksum of the top 10 levels to compare against Kraken's checksum.
 
 
 <hr height="15px" style="background-color: white;">
@@ -40,26 +39,40 @@ abc
 
 ## **How to run:**
 
-ABC
+1. Install the dependencies: nlohmann_json, IXWebSocket, and ZLIB.
+
+2. Build the project with CMake:
+```
+mkdir build
+cd build
+cmake ..
+cmake --build .
+```
+
+3. Run the program:
+```
+./cryptOrderbook
+```
+
+The program will connect to Kraken and start printing the live order book for BTC/USD.
 
 
 <hr height="15px" style="background-color: white;">
 
 
 ## **References:**
-Websocket channel and stream choice:
-Kraken v2. Advised to use as it is newer than v1
-Link: https://docs.kraken.com/exchange/api-reference/spot-websocket-v2/book
 
+Websocket channel and stream choice: Kraken v2, advised to use as it is newer than v1
+- Link: https://docs.kraken.com/exchange/api-reference/spot-websocket-v2/book
 
--- WebSocket used: IXWebSocket
-Github repo link: https://github.com/machinezone/IXWebSocket/blob/master/ws/ws.cpp
+WebSocket used: IXWebSocket
+- Github repo link: https://github.com/machinezone/IXWebSocket/blob/master/ws/ws.cpp
 
 Other tools and resources links:
--- WebSocket cpp by zaphoyd: https://github.com/zaphoyd/websocketpp
--- nlohmann for json : https://github.com/nlohmann/json
--- Kraken checksum: https://docs.kraken.com/exchange/guides/websockets/book-checksum-v2
--- CRC32 from ZLIB: https://github.com/luvit/zlib/tree/master
+- WebSocket cpp by zaphoyd: https://github.com/zaphoyd/websocketpp
+- nlohmann for json: https://github.com/nlohmann/json
+- Kraken checksum: https://docs.kraken.com/exchange/guides/websockets/book-checksum-v2
+- CRC32 from ZLIB: https://github.com/luvit/zlib/tree/master
 
 
 
