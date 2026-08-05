@@ -48,9 +48,6 @@ public:
         // Update BID prices
         for (const auto& bid : bids) {
 
-            //double price = bid.first;
-            //double qty = bid.second;
-
             if (bid.qty == 0) {                      // If qty is 0, remove this price level
                 bid_book.erase(bid.price);
             } else {                             // Otherwise, add or update this price level
@@ -60,9 +57,6 @@ public:
 
         // Update ASK prices
         for (const auto& ask : asks) {
-
-            //double price = ask.first;
-            //double qty = ask.second;
 
             if (ask.qty == 0) {                     // If qty is 0, remove this price level
                 ask_book.erase(ask.price);
@@ -80,9 +74,6 @@ public:
         // Update bid prices
         for (const auto& bid : bids) {
 
-            //double price = bid.price;
-            //double qty = bid.second;
-
             if (bid.qty == 0) {                      // If qty is 0, remove this price level
                 bid_book.erase(bid.price);           // e.g. ignoring the bid if qty is 0 bcs it's futile
             } else {                             // Otherwise, add or update this price level
@@ -93,8 +84,6 @@ public:
 
         // Update ask prices
         for (const auto& ask : asks) {
-            //double price = ask.first;
-            //double qty = ask.second;
 
             if (ask.qty == 0) {                     // If qty is 0, remove this price level
                 ask_book.erase(ask.price);
@@ -129,9 +118,6 @@ public:
             qty.erase(0, qty.find_first_not_of('0'));
 
             asks_string += price + qty;
-
-            //if (ask_count >= 9) break;
-            //ask_count++;
         }
 
         // -- Bids string to loop through top 10 bids   |    Erase '.' and leading zeros inside loops --
@@ -152,9 +138,6 @@ public:
             qty.erase(std::remove(qty.begin(), qty.end(), '.'), qty.end());
             qty.erase(0, qty.find_first_not_of('0'));
             bids_string += price + qty;
-
-            //if (bid_count >= 9) break;
-            //bid_count++;
         }
 
         // Combined string of both

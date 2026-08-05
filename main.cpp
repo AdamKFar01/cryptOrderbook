@@ -145,7 +145,6 @@ int main () {
 
     webSocket.start();                  // Starting session
 
-    //webSocket.send("Yo");               // A message is sent - only needed in project beginning
     std::cout << "> " << std::flush;    // Display a prompt
     std::string text;                   // A string of text
 
@@ -155,21 +154,5 @@ int main () {
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
-
-    /*
-    while (std::getline(std::cin, text)) {
-        webSocket.send(text);
-        std::cout << "> " << std::flush;
-    }
-
-    // This loop reads what is typed in the terminal, line by line
-    // And sends each line as a new message
-    // Not needed because we will be reading stuff from Kraken, not user input
-    */
-
     return 0;
-    // "return 0;" irrelevant here because of the infinite while loop above
-    // Keeping "return 0;" as is won't affect the code
-
-
 }
