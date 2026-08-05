@@ -1,4 +1,3 @@
-// Created by Adam Farhat on
 // v2 snapchat and update messages link: https://docs.kraken.com/exchange/api-reference/spot-websocket-v2/book
 
 // -- Link to skeleton programs for update, snapshot, subscribing, unsubscribing, asks and bids can be found on
